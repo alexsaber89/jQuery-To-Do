@@ -7,3 +7,11 @@
 #add-btn {
   margin-top: 1%;
 }
+
+#list-container {
+  display: flex;
+  #to-do,
+  #completed {
+    margin: 0 auto;
+  }
+}
