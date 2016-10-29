@@ -7,12 +7,18 @@ let ToDo = (function() {
   let completedDiv = $("#completed");
   let completedDivArray = [];
   let addBtn = $("#add-btn");
-  let userInput = "";
+  let userInput = $("#userInput");
   let uniqueID = 0;
 
   return {
     addEvents: function() {
       addBtn.on("click",ToDo.getUserInput);
+      userInput.on("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13) {
+          ToDo.getUserInput();
+        }
+      });
       body.on("click", function(event) {
         if ($(event.target).hasClass("delete-btn")) {
           $(event.target).parent().remove();
@@ -25,11 +31,11 @@ let ToDo = (function() {
       });
     },
     getUserInput: function(event) {
-      userInput = $("#userInput");
       if (userInput.val() !== "") {
         uniqueID++;
         ToDo.setUserToDoObject(uniqueID,userInput.val());
         userInput.val("");
+        userInput.focus();
       }
     },
     setUserToDoObject: function(uniqueID,userInput) {
