@@ -15,7 +15,7 @@ let ToDo = (function() {
       addBtn.on("click",ToDo.getUserInput);
       body.on("click", function(event) {
         if ($(event.target).hasClass("delete-btn")) {
-          console.log("delete button clicked");
+          $(event.target).parent().remove();
         }
       });
       body.on("click", function(event) {
@@ -46,13 +46,15 @@ let ToDo = (function() {
       displayedToDoItems += `<h2>To Do</h2>`;
       toDoDivArray.forEach((object) => {
         console.log(object.text);
+        displayedToDoItems += `<div> `;
+        displayedToDoItems += `<div class="checkbox"><label><input type="checkbox" value=""></label></div>`;
         displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm edit-btn">Edit</button> `;
-        displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm delete-btn">Delete</button>`;
+        displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm delete-btn">Delete</button> `;
         displayedToDoItems += `${object.text}`;
         displayedToDoItems += `<br /><br />`;
+        displayedToDoItems += `</div>`;
       });
       toDoDiv.html(displayedToDoItems);
-      completedDiv.html(displayedToDoItems);
     }
   };
 })();
