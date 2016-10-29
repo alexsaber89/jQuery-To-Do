@@ -51,7 +51,7 @@ let ToDo = (function() {
         displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm edit-btn">Edit</button> `;
         displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm delete-btn">Delete</button> `;
         displayedToDoItems += `${object.text}`;
-        displayedToDoItems += `<br /><br />`;
+        displayedToDoItems += `<br />`;
         displayedToDoItems += `</div>`;
       });
       toDoDiv.html(displayedToDoItems);
