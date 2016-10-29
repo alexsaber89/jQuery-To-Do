@@ -25,11 +25,11 @@ let ToDo = (function() {
       });
     },
     getUserInput: function(event) {
-      userInput = $("#userInput").val();
-      if (userInput !== "") {
+      userInput = $("#userInput");
+      if (userInput.val() !== "") {
         uniqueID++;
-        ToDo.setUserToDoObject(uniqueID,userInput);
-        userInput = "";
+        ToDo.setUserToDoObject(uniqueID,userInput.val());
+        userInput.val("");
       }
     },
     setUserToDoObject: function(uniqueID,userInput) {
@@ -43,7 +43,6 @@ let ToDo = (function() {
     },
     displayUserToDoItems: function() {
       let displayedToDoItems = "";
-      displayedToDoItems += `<h2>To Do</h2>`;
       toDoDivArray.forEach((object) => {
         console.log(object.text);
         displayedToDoItems += `<div> `;

@@ -15,8 +15,8 @@
 
 #list-container {
   display: flex; }
-  #list-container #to-do,
-  #list-container #completed {
+  #list-container #to-do-container,
+  #list-container #completed-container {
     margin: 0 auto; }
 
 .checkbox {
