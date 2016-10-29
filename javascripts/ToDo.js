@@ -44,13 +44,11 @@ let ToDo = (function() {
         "text": userInput
       };
       toDoDivArray.push(userToDoObject);
-      console.log("toDoDivArray: ",toDoDivArray);
       ToDo.displayUserToDoItems();
     },
     displayUserToDoItems: function() {
       let displayedToDoItems = "";
       toDoDivArray.forEach((object) => {
-        console.log(object.text);
         displayedToDoItems += `<div> `;
         displayedToDoItems += `<div class="checkbox"><label><input type="checkbox" value=""></label></div>`;
         displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm edit-btn">Edit</button> `;
