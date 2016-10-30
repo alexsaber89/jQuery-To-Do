@@ -26,7 +26,7 @@ let ToDo = (function() {
       });
       body.on("click", function(event) {
         if ($(event.target).hasClass("edit-btn")) {
-          console.log("edit button clicked");
+          console.log("edit button has been clicked");
         }
       });
     },
