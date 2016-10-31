@@ -45,7 +45,6 @@ let ToDo = (function() {
       //Edit Button event
       body.on("click", function(event) {
         if ($(event.target).hasClass("edit-btn")) {
-          console.log("edit button has been clicked");
           let targetedToDoId = $(event.target).closest(".to-do-wrapper").attr("id");
           for (var i = 0; i < toDoDivArray.length; i++) {
             if (parseInt(toDoDivArray[i].id) === parseInt(targetedToDoId)) {
@@ -54,6 +53,7 @@ let ToDo = (function() {
                 ToDo.displayUserToDoItems(toDoDivArray,toDoDiv);
             }
           }
+          userInput.val("");
         }
       });
       //Checkbox event
