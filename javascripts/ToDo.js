@@ -22,11 +22,22 @@ let ToDo = (function() {
       body.on("click", function(event) {
         if ($(event.target).hasClass("delete-btn")) {
           let targetedToDoId = $(event.target).closest(".to-do-wrapper").attr("id");
-          for (var i = 0; i < toDoDivArray.length; i++) {
-            if (parseInt(toDoDivArray[i].id) === parseInt(targetedToDoId)) {
-              let targetedToDoObject = toDoDivArray[i];
-              toDoDivArray.splice(toDoDivArray.indexOf(targetedToDoObject),1);
-              ToDo.displayUserToDoItems(toDoDivArray,toDoDiv);
+          let array = "";
+          let div = "";
+          if ($(event.target).closest(".to-do-wrapper").parent().parent().attr("id") === "completed-container") {
+            array = completedDivArray;
+            div = completedDiv;
+            console.log("completed");
+          } else {
+            array = toDoDivArray;
+            div = toDoDiv;
+            console.log("to do");
+          }
+          for (var i = 0; i < array.length; i++) {
+            if (parseInt(array[i].id) === parseInt(targetedToDoId)) {
+              let targetedToDoObject = array[i];
+              array.splice(array.indexOf(targetedToDoObject),1);
+              ToDo.displayUserToDoItems(array,div);
             }
           }
         }
