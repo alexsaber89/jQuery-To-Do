@@ -19,5 +19,8 @@
   #list-container #completed-container {
     margin: 0 auto; }
 
-.checkbox {
+.checkbox-style {
   display: inline-block; }
+
+.to-do_text {
+  display: inline; }
