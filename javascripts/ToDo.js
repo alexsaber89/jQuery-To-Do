@@ -21,7 +21,14 @@ let ToDo = (function() {
       });
       body.on("click", function(event) {
         if ($(event.target).hasClass("delete-btn")) {
-          $(event.target).parent().remove();
+          let targetedToDoId = $(event.target).closest(".to-do-wrapper").attr("id");
+          for (var i = 0; i < toDoDivArray.length; i++) {
+            if (parseInt(toDoDivArray[i].id) === parseInt(targetedToDoId)) {
+              let targetedToDoObject = toDoDivArray[i];
+              toDoDivArray.splice(toDoDivArray.indexOf(targetedToDoObject),1);
+              ToDo.displayUserToDoItems(toDoDivArray,toDoDiv);
+            }
+          }
         }
       });
       body.on("click", function(event) {
@@ -36,7 +43,6 @@ let ToDo = (function() {
             if (parseInt(toDoDivArray[i].id) === parseInt(targetedToDoId)) {
                 let targetedToDoObject = toDoDivArray[i];
                 completedDivArray.push(targetedToDoObject);
-                console.log("completedDivArray: ",completedDivArray);
                 ToDo.displayUserToDoItems(completedDivArray,completedDiv);
                 toDoDivArray.splice(toDoDivArray.indexOf(targetedToDoObject),1);
                 $(event.target).closest(".to-do-wrapper").remove();
