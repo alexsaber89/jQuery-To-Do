@@ -1,0 +1,36 @@
+.jumbotron {
+    padding: 0.5em 0.6em;
+    h1 {
+        font-size: 2em;
+        text-align: center;
+        margin: 1%;
+    }
+}
+
+//User Panel
+.user {
+  width: 50%;
+  text-align: center;
+  background-color: #eee;
+}
+
+#add-btn {
+  margin-top: 1%;
+}
+
+//To Do & Completed Lists
+#list-container {
+  display: flex;
+  #to-do-container,
+  #completed-container {
+    margin: 0 auto;
+  }
+}
+
+.checkbox-style {
+  display: inline-block
+}
+
+.to-do_text {
+  display: inline;
+}
