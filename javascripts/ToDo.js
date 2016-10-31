@@ -70,7 +70,11 @@ let ToDo = (function() {
       let displayedToDoItems = "";
       array.forEach((object) => {
         displayedToDoItems += `<div id=${object.id} class="to-do-wrapper"> `;
-        displayedToDoItems += `<div class="checkbox-style"><label><input class="checkbox" type="checkbox" value=""></label></div>`;
+        if (displayDiv === completedDiv) {
+          displayedToDoItems += `<div class="checkbox-style"><label><input class="checkbox" type="checkbox" value="" checked></label></div>`;
+        } else {
+          displayedToDoItems += `<div class="checkbox-style"><label><input class="checkbox" type="checkbox" value=""></label></div>`;
+        }
         displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm edit-btn">Edit</button> `;
         displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm delete-btn">Delete</button> `;
         displayedToDoItems += `<div class="to-do_text">${object.text}</div>`;
