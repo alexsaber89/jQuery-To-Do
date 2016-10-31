@@ -12,6 +12,7 @@ let ToDo = (function() {
 
   return {
     addEvents: function() {
+      //Collect User Input event
       addBtn.on("click",ToDo.getUserInput);
       userInput.on("keyup", function(event) {
         event.preventDefault();
@@ -19,6 +20,7 @@ let ToDo = (function() {
           ToDo.getUserInput();
         }
       });
+      //Delete Button event
       body.on("click", function(event) {
         if ($(event.target).hasClass("delete-btn")) {
           let targetedToDoId = $(event.target).closest(".to-do-wrapper").attr("id");
@@ -27,11 +29,9 @@ let ToDo = (function() {
           if ($(event.target).closest(".to-do-wrapper").parent().parent().attr("id") === "completed-container") {
             array = completedDivArray;
             div = completedDiv;
-            console.log("completed");
           } else {
             array = toDoDivArray;
             div = toDoDiv;
-            console.log("to do");
           }
           for (var i = 0; i < array.length; i++) {
             if (parseInt(array[i].id) === parseInt(targetedToDoId)) {
@@ -42,11 +42,21 @@ let ToDo = (function() {
           }
         }
       });
+      //Edit Button event
       body.on("click", function(event) {
         if ($(event.target).hasClass("edit-btn")) {
           console.log("edit button has been clicked");
+          let targetedToDoId = $(event.target).closest(".to-do-wrapper").attr("id");
+          for (var i = 0; i < toDoDivArray.length; i++) {
+            if (parseInt(toDoDivArray[i].id) === parseInt(targetedToDoId)) {
+                let targetedToDoObject = toDoDivArray[i];
+                targetedToDoObject.text = userInput.val();
+                ToDo.displayUserToDoItems(toDoDivArray,toDoDiv);
+            }
+          }
         }
       });
+      //Checkbox event
       body.on("change", function(event) {
         if ($(event.target).hasClass("checkbox")) {
           let targetedToDoId = $(event.target).closest(".to-do-wrapper").attr("id");
@@ -91,8 +101,8 @@ let ToDo = (function() {
           displayedToDoItems += `<div class="checkbox-style"><label><input class="checkbox" type="checkbox" value="" checked></label></div>`;
         } else {
           displayedToDoItems += `<div class="checkbox-style"><label><input class="checkbox" type="checkbox" value=""></label></div>`;
+          displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm edit-btn">Edit</button> `;
         }
-        displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm edit-btn">Edit</button> `;
         displayedToDoItems += `<button type="button" class="btn btn-primary btn-sm delete-btn">Delete</button> `;
         displayedToDoItems += `<div class="to-do_text">${object.text}</div>`;
         displayedToDoItems += `<br />`;
