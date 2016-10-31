@@ -9,7 +9,9 @@ let ToDo = (function() {
   let addBtn = $("#add-btn");
   let userInput = $("#userInput");
   let uniqueID = 0;
-
+  $(document).ready(function() {
+    userInput.focus();
+  });
   return {
     addEvents: function() {
       //Collect User Input event
@@ -60,13 +62,28 @@ let ToDo = (function() {
       body.on("change", function(event) {
         if ($(event.target).hasClass("checkbox")) {
           let targetedToDoId = $(event.target).closest(".to-do-wrapper").attr("id");
-          for (var i = 0; i < toDoDivArray.length; i++) {
-            if (parseInt(toDoDivArray[i].id) === parseInt(targetedToDoId)) {
-                let targetedToDoObject = toDoDivArray[i];
-                completedDivArray.push(targetedToDoObject);
-                ToDo.displayUserToDoItems(completedDivArray,completedDiv);
-                toDoDivArray.splice(toDoDivArray.indexOf(targetedToDoObject),1);
-                $(event.target).closest(".to-do-wrapper").remove();
+          let currentArray = "";
+          let currentDiv = "";
+          let newArray = "";
+          let newDiv = "";
+          if ($(event.target).closest(".to-do-wrapper").parent().parent().attr("id") === "completed-container") {
+            currentArray = completedDivArray;
+            currentDiv = completedDiv;
+            newArray = toDoDivArray;
+            newDiv = toDoDiv;
+          } else {
+            currentArray = toDoDivArray;
+            currentDiv = toDoDiv;
+            newArray = completedDivArray;
+            newDiv = completedDiv;
+          }
+          for (var i = 0; i < currentArray.length; i++) {
+            if (parseInt(currentArray[i].id) === parseInt(targetedToDoId)) {
+              let targetedToDoObject = currentArray[i];
+              newArray.push(targetedToDoObject);
+              ToDo.displayUserToDoItems(newArray,newDiv);
+              currentArray.splice(currentArray.indexOf(targetedToDoObject),1);
+              ToDo.displayUserToDoItems(currentArray,currentDiv);
             }
           }
         }
