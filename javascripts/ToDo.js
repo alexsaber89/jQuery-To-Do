@@ -36,6 +36,28 @@ function putTodoInDOM() {
   });
 }
 
+function createLogoutButton() {
+  FbAPI.getUser(apiKeys,uid).then(function(userResponse) {
+    console.log("userResponse",userResponse);
+    $("#logout-container").html("");
+    let currentUsername = userResponse.username;
+    let logoutButton = `<button class="btn btn-danger" id="logoutButton">LOGOUT ${currentUsername}</button>`;
+    $("#logout-container").append(logoutButton);
+  });
+}
+
+$("#logout-container").on("click","#logoutButton",function() {
+  FbAPI.logoutUser();
+  uid = "";
+  $("#incomplete-tasks").html("");
+  $("#completed-tasks").html("");
+  $("#inputEmail").val("");
+  $("#inputPassword").val("");
+  $("#inputUsername").val("");
+  $("#login-container").removeClass("hide");
+  $("#master-to-do-container").addClass("hide");
+});
+
 $(document).ready(function() {
   FbAPI.firebaseCredentials().then(function(keys){
     apiKeys = keys;
@@ -115,6 +137,7 @@ $(document).ready(function() {
     FbAPI.loginUser(user).then(function(loginResponse) {
       console.log("Login response: ",loginResponse);
       uid = loginResponse.uid;
+      createLogoutButton();
       putTodoInDOM();
       $("#login-container").addClass("hide");
       $("#master-to-do-container").removeClass("hide");
@@ -131,6 +154,7 @@ $(document).ready(function() {
       "uid": uid
     };
     FbAPI.editTodo(apiKeys, itemId, editedItem).then(function() {
+      createLogoutButton();
       putTodoInDOM();
     });
   });
