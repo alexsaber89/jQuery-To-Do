@@ -8,7 +8,16 @@
   </head>
   <body id="body">
 
-    <div id="container">
+    <div class="container col-xs-4 col-xs-offset-4" id="login-container">
+        <h1 class="form-signin-heading">jQuery To Do</h1>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required>
+        <button class="btn btn-lg btn-success col-xs-6" id="loginButton">Login</button>
+        <button class="btn btn-lg btn-primary col-xs-6" id="registerButton">Register</button>
+    </div>
+
+    <div id="master-to-do-container" class="hide">
 
       <div class="jumbotron">
         <h1 class="display-3">jQuery To Do</h1>
@@ -25,14 +34,14 @@
 
         <div id="to-do-container">
           <h2>To Do</h2>
-          <div id="incomplete-tasks">
-          </div>
+          <ul id="incomplete-tasks">
+          </ul>
         </div>
 
         <div id="completed-container">
           <h2>Completed</h2>
-          <div id="completed-tasks">
-          </div>
+          <ul id="completed-tasks">
+          </ul>
         </div>
 
       </div>
@@ -44,6 +53,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src="javascripts/firebase.js"></script>
     <script type="text/javascript" src="javascripts/firebaseMethods.js"></script>
+    <script type="text/javascript" src="javascripts/firebaseAuth.js"></script>
+    <script type="text/javascript" src="javascripts/firebaseUser.js"></script>
     <script type="text/javascript" src="javascripts/ToDo.js"></script>
   </body>
 </html>
